@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ClientServiceImpl implements ClientService {
 
     private BufferedReader reader;
-    private ArrayList<Client> clients = new ArrayList<>();
+    private ArrayList<Client> clients;
 
 
     public ClientServiceImpl(){

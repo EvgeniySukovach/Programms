@@ -5,21 +5,48 @@ import Models.Client.Client;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ClientDao {
     private Connection connection;
+    // CREATE TABLE client (ID INT PRIMARY KEY, NAME VARCHAR(255), SURNAME VARCHAR(255), AGE INT);
 
     public ClientDao() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("org.h2.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/mydbtest?useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true\" +\n" +
-                            "                    \"&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                    "root", "root");
+                    "jdbc:h2:~/myDb",
+                    "", "");
+            isAbsentClientDao();
         } catch (Exception e){
             e.printStackTrace();
         }
     }
+    private void isAbsentClientDao() {
+        String sql = "SELECT * FROM INFORMATION_SCHEMA.TABLES";
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+        ) {
+            ResultSet rs = ps.executeQuery();
+            boolean isAbsentClientDao = true;
+            while (rs.next()) {
+                if (Objects.equals(rs.getString("TABLE_NAME"), "CLIENT")) {
+                    isAbsentClientDao = false;
+                    break;
+                }
+            }
+            if(isAbsentClientDao) {
+                sql ="CREATE TABLE CLIENT (ID BIGINT AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(100), SURNAME VARCHAR (100), AGE INTEGER(2))";
+                try (Statement st = connection.createStatement()) {
+                    st.execute(sql);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addClient(Client client){
         try(PreparedStatement ps =
         connection.prepareStatement("INSERT INTO client (id, name, surname, age) VALUES (? , ?, ?, ?)")){

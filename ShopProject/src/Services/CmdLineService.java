@@ -15,10 +15,15 @@ import Services.impl.ProductServiceImpl;
 public class CmdLineService  {
 
     private final BufferedReader reader;
-    //private  ClientService clientService =  new ClientServiceImpl();
-    //private  ProductService productService = new ProductServiceImpl();
-    private  ClientService clientService = (ClientService) new ClientServiceDb();
-    private  ProductService productService = (ProductService)new ProductServiceDb();
+
+    private  ClientService clientService;
+    private  ProductService productService;
+
+    public CmdLineService(ClientServiceImpl clientService, ProductServiceImpl productService){
+        this.clientService = clientService;
+        this.productService = productService;
+        this.reader = new BufferedReader(new InputStreamReader(System.in));
+    }
 
     public CmdLineService(ClientServiceDb clientService, ProductServiceDb productService){
         this.clientService = clientService;
@@ -87,8 +92,8 @@ public class CmdLineService  {
     //---------------------------------------------------
     public void productMenu() throws IOException{
         showProductMenu();
-        boolean isWork = true;
 
+        boolean isWork = true;
         do {
             String s = reader.readLine();
 
