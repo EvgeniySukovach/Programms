@@ -18,10 +18,12 @@ public class ProductController {
 
     private final ProductService productService;
     private final static Logger log = LoggerFactory.getLogger(ProductController.class);
+
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
+
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(ProductDTO product){

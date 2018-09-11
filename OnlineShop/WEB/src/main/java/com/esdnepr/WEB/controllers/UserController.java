@@ -23,11 +23,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody  List<UserDTO> getAllUsers(){
-        log.info("Get all users");
-        return userService.getAllUsers();
-    }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,5 +46,10 @@ public class UserController {
     public void get(@PathVariable("id") Long id){
         log.info("Get user by id: {}", id);
         userService.get(id);
+    }
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody  List<UserDTO> getAllUsers(){
+        log.info("Get all users");
+        return userService.getAllUsers();
     }
 }

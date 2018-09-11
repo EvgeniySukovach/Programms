@@ -1,7 +1,11 @@
 package com.esdnepr.DAO.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -21,6 +25,9 @@ public class Product {
     private int count;
     @Column(name = "PRICE", nullable = false)
     private Double price;
+    @JsonIgnore
+    @ManyToMany
+    private Set<Order> orders = new HashSet<>();
 
     public Product() {
     }
@@ -78,6 +85,13 @@ public class Product {
     }
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

@@ -1,0 +1,15 @@
+com\esdnepr\services\convert\impl\UserConvertImpl.class
+com\esdnepr\services\convert\UserConvert.class
+com\esdnepr\services\DTO\OrderDTO.class
+com\esdnepr\services\convert\impl\ProductConvertImpl.class
+com\esdnepr\services\DTO\ProductDTO.class
+com\esdnepr\services\impl\OrderServiceImpl.class
+com\esdnepr\services\convert\impl\OrderConvertImpl.class
+com\esdnepr\services\convert\OrderConvert.class
+com\esdnepr\services\convert\ProductConvert.class
+com\esdnepr\services\ProductService.class
+com\esdnepr\services\UserService.class
+com\esdnepr\services\impl\ProductServiceImpl.class
+com\esdnepr\services\OrderService.class
+com\esdnepr\services\impl\UserServiceImpl.class
+com\esdnepr\services\DTO\UserDTO.class

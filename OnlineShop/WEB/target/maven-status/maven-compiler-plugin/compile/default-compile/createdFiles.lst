@@ -1,0 +1,5 @@
+com\esdnepr\WEB\controllers\OrderController.class
+com\esdnepr\WEB\controllers\ProductController.class
+com\esdnepr\WEB\controllers\UserController.class
+com\esdnepr\WEB\initializers\OrderInitializer.class
+com\esdnepr\WEB\initializers\ShopContextInitializer.class
